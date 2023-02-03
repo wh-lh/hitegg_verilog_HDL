@@ -1,0 +1,25 @@
+
+State Machine - |hitegg|outputcontrol:outputcontrol0|numberscan:numberscan0|state
+Name state.11 state.10 state.01 state.00 
+state.00 0 0 0 0 
+state.01 0 0 1 1 
+state.10 0 1 0 1 
+state.11 1 0 0 1 
+
+State Machine - |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|state
+Name state.111 state.110 state.101 state.100 state.011 state.010 state.001 state.000 
+state.000 0 0 0 0 0 0 0 0 
+state.001 0 0 0 0 0 0 1 1 
+state.010 0 0 0 0 0 1 0 1 
+state.011 0 0 0 0 1 0 0 1 
+state.100 0 0 0 1 0 0 0 1 
+state.101 0 0 1 0 0 0 0 1 
+state.110 0 1 0 0 0 0 0 1 
+state.111 1 0 0 0 0 0 0 1 
+
+State Machine - |hitegg|inputcontrol:inputcontrol0|keyscan:keyscan0|state
+Name state.00 state.10 state.01 state.11 
+state.11 0 0 0 0 
+state.01 0 0 1 1 
+state.10 0 1 0 1 
+state.00 1 0 0 1 

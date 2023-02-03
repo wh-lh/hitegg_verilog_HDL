@@ -1,0 +1,524 @@
+Analysis & Synthesis report for hitegg
+Sun Dec 13 09:30:30 2020
+Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |hitegg|outputcontrol:outputcontrol0|numberscan:numberscan0|state
+  9. State Machine - |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|state
+ 10. State Machine - |hitegg|inputcontrol:inputcontrol0|keyscan:keyscan0|state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Port Connectivity Checks: "outputcontrol:outputcontrol0|numberscan:numberscan0"
+ 16. Port Connectivity Checks: "outputcontrol:outputcontrol0|LEDscan:LEDscan0"
+ 17. Port Connectivity Checks: "game:game0|random:random0"
+ 18. Port Connectivity Checks: "game:game0"
+ 19. Port Connectivity Checks: "inputcontrol:inputcontrol0"
+ 20. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Sun Dec 13 09:30:30 2020       ;
+; Quartus Prime Version       ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Revision Name               ; hitegg                                      ;
+; Top-level Entity Name       ; hitegg                                      ;
+; Family                      ; MAX II                                      ;
+; Total logic elements        ; 395                                         ;
+; Total pins                  ; 68                                          ;
+; Total virtual pins          ; 0                                           ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
++-----------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EPM1270T144C5      ;                    ;
+; Top-level entity name                                            ; hitegg             ; hitegg             ;
+; Family name                                                      ; MAX II             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                               ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+; keyscan.v                        ; yes             ; User Verilog HDL File  ; E:/hitegg/keyscan.v          ;         ;
+; random.v                         ; yes             ; User Verilog HDL File  ; E:/hitegg/random.v           ;         ;
+; counttime.v                      ; yes             ; User Verilog HDL File  ; E:/hitegg/counttime.v        ;         ;
+; countpoint.v                     ; yes             ; User Verilog HDL File  ; E:/hitegg/countpoint.v       ;         ;
+; LEDscan.v                        ; yes             ; User Verilog HDL File  ; E:/hitegg/LEDscan.v          ;         ;
+; numberscan.v                     ; yes             ; User Verilog HDL File  ; E:/hitegg/numberscan.v       ;         ;
+; inputcontrol.v                   ; yes             ; User Verilog HDL File  ; E:/hitegg/inputcontrol.v     ;         ;
+; game.v                           ; yes             ; User Verilog HDL File  ; E:/hitegg/game.v             ;         ;
+; outputcontrol.v                  ; yes             ; User Verilog HDL File  ; E:/hitegg/outputcontrol.v    ;         ;
+; hitegg.v                         ; yes             ; User Verilog HDL File  ; E:/hitegg/hitegg.v           ;         ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 395   ;
+;     -- Combinational with no register       ; 228   ;
+;     -- Register only                        ; 37    ;
+;     -- Combinational with a register        ; 130   ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 215   ;
+;     -- 3 input functions                    ; 50    ;
+;     -- 2 input functions                    ; 60    ;
+;     -- 1 input functions                    ; 33    ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 355   ;
+;     -- arithmetic mode                      ; 40    ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 9     ;
+;     -- asynchronous clear/load mode         ; 93    ;
+;                                             ;       ;
+; Total registers                             ; 167   ;
+; Total logic cells in carry chains           ; 46    ;
+; I/O pins                                    ; 68    ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 167   ;
+; Total fan-out                               ; 1610  ;
+; Average fan-out                             ; 3.48  ;
++---------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                 ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------------------+---------------+--------------+
+; Compilation Hierarchy Node        ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                         ; Entity Name   ; Library Name ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------------------+---------------+--------------+
+; |hitegg                           ; 395 (0)     ; 167          ; 0          ; 68   ; 0            ; 228 (0)      ; 37 (0)            ; 130 (0)          ; 46 (0)          ; 0 (0)      ; |hitegg                                                     ; hitegg        ; work         ;
+;    |game:game0|                   ; 100 (0)     ; 47           ; 0          ; 0    ; 0            ; 53 (0)       ; 2 (0)             ; 45 (0)           ; 26 (0)          ; 0 (0)      ; |hitegg|game:game0                                          ; game          ; work         ;
+;       |countpoint:countpoint0|    ; 33 (33)     ; 6            ; 0          ; 0    ; 0            ; 27 (27)      ; 0 (0)             ; 6 (6)            ; 10 (10)         ; 0 (0)      ; |hitegg|game:game0|countpoint:countpoint0                   ; countpoint    ; work         ;
+;       |counttime:counttime0|      ; 40 (40)     ; 17           ; 0          ; 0    ; 0            ; 23 (23)      ; 0 (0)             ; 17 (17)          ; 16 (16)         ; 0 (0)      ; |hitegg|game:game0|counttime:counttime0                     ; counttime     ; work         ;
+;       |random:random0|            ; 27 (27)     ; 24           ; 0          ; 0    ; 0            ; 3 (3)        ; 2 (2)             ; 22 (22)          ; 0 (0)           ; 0 (0)      ; |hitegg|game:game0|random:random0                           ; random        ; work         ;
+;    |inputcontrol:inputcontrol0|   ; 24 (0)      ; 24           ; 0          ; 0    ; 0            ; 0 (0)        ; 3 (0)             ; 21 (0)           ; 0 (0)           ; 0 (0)      ; |hitegg|inputcontrol:inputcontrol0                          ; inputcontrol  ; work         ;
+;       |keyscan:keyscan0|          ; 24 (24)     ; 24           ; 0          ; 0    ; 0            ; 0 (0)        ; 3 (3)             ; 21 (21)          ; 0 (0)           ; 0 (0)      ; |hitegg|inputcontrol:inputcontrol0|keyscan:keyscan0         ; keyscan       ; work         ;
+;    |outputcontrol:outputcontrol0| ; 271 (0)     ; 96           ; 0          ; 0    ; 0            ; 175 (0)      ; 32 (0)            ; 64 (0)           ; 20 (0)          ; 0 (0)      ; |hitegg|outputcontrol:outputcontrol0                        ; outputcontrol ; work         ;
+;       |LEDscan:LEDscan0|          ; 169 (169)   ; 85           ; 0          ; 0    ; 0            ; 84 (84)      ; 29 (29)           ; 56 (56)          ; 20 (20)         ; 0 (0)      ; |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0       ; LEDscan       ; work         ;
+;       |numberscan:numberscan0|    ; 102 (102)   ; 11           ; 0          ; 0    ; 0            ; 91 (91)      ; 3 (3)             ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |hitegg|outputcontrol:outputcontrol0|numberscan:numberscan0 ; numberscan    ; work         ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------------------+---------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------+
+; State Machine - |hitegg|outputcontrol:outputcontrol0|numberscan:numberscan0|state ;
++----------+----------+----------+----------+---------------------------------------+
+; Name     ; state.11 ; state.10 ; state.01 ; state.00                              ;
++----------+----------+----------+----------+---------------------------------------+
+; state.00 ; 0        ; 0        ; 0        ; 0                                     ;
+; state.01 ; 0        ; 0        ; 1        ; 1                                     ;
+; state.10 ; 0        ; 1        ; 0        ; 1                                     ;
+; state.11 ; 1        ; 0        ; 0        ; 1                                     ;
++----------+----------+----------+----------+---------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------+
+; State Machine - |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|state                               ;
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+; Name      ; state.111 ; state.110 ; state.101 ; state.100 ; state.011 ; state.010 ; state.001 ; state.000 ;
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+; state.000 ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ;
+; state.001 ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 1         ;
+; state.010 ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 1         ;
+; state.011 ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 1         ;
+; state.100 ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 1         ;
+; state.101 ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 1         ;
+; state.110 ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ;
+; state.111 ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ;
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------+
+; State Machine - |hitegg|inputcontrol:inputcontrol0|keyscan:keyscan0|state ;
++----------+----------+----------+----------+-------------------------------+
+; Name     ; state.00 ; state.10 ; state.01 ; state.11                      ;
++----------+----------+----------+----------+-------------------------------+
+; state.11 ; 0        ; 0        ; 0        ; 0                             ;
+; state.01 ; 0        ; 0        ; 1        ; 1                             ;
+; state.10 ; 0        ; 1        ; 0        ; 1                             ;
+; state.00 ; 1        ; 0        ; 0        ; 1                             ;
++----------+----------+----------+----------+-------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                      ;
++-------------------------------------------------------------------+---------------------------------------------------------------------+
+; Register name                                                     ; Reason for Removal                                                  ;
++-------------------------------------------------------------------+---------------------------------------------------------------------+
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_row[2..5] ; Stuck at VCC due to stuck port data_in                              ;
+; game:game0|random:random0|position[0]                             ; Stuck at GND due to stuck port data_in                              ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[49,56,57]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[48] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[49,56,57]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[48] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[33,40,41]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[32] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[17,24,25]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[16] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[1,8,9]        ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[0]  ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[51,58,59]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[50] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[35,42,43]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[34] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[19,26,27]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[18] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[2,3,11]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[10] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[53,60,61]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[52] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[37,44,45]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[36] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[21,28,29]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[20] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[4,5,13]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[12] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[55,62,63]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[54] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[39,46,47]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[38] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[23,30,31]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[22] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[6,7,15]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_R[14] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[33,40,41]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[32] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[17,24,25]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[16] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[1,8,9]        ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[0]  ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[51,58,59]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[50] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[35,42,43]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[34] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[19,26,27]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[18] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[2,3,11]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[10] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[53,60,61]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[52] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[37,44,45]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[36] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[21,28,29]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[20] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[4,5,13]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[12] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[55,62,63]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[54] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[39,46,47]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[38] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[23,30,31]     ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[22] ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[6,7,15]       ; Merged with outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_G[14] ;
+; game:game0|random:random0|cnt5[2]                                 ; Stuck at GND due to stuck port data_in                              ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state~4       ; Lost fanout                                                         ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state~5       ; Lost fanout                                                         ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|state~4             ; Lost fanout                                                         ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|state~5             ; Lost fanout                                                         ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|state~6             ; Lost fanout                                                         ;
+; inputcontrol:inputcontrol0|keyscan:keyscan0|state~4               ; Lost fanout                                                         ;
+; inputcontrol:inputcontrol0|keyscan:keyscan0|state~5               ; Lost fanout                                                         ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state.00      ; Merged with inputcontrol:inputcontrol0|keyscan:keyscan0|state.11    ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state.01      ; Merged with inputcontrol:inputcontrol0|keyscan:keyscan0|state.00    ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state.10      ; Merged with inputcontrol:inputcontrol0|keyscan:keyscan0|state.01    ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|state.11      ; Merged with inputcontrol:inputcontrol0|keyscan:keyscan0|state.10    ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_Rcol[7]   ; Stuck at GND due to stuck port data_in                              ;
+; Total Number of Removed Registers = 114                           ;                                                                     ;
++-------------------------------------------------------------------+---------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 167   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 9     ;
+; Number of registers using Asynchronous Clear ; 90    ;
+; Number of registers using Asynchronous Load  ; 3     ;
+; Number of registers using Clock Enable       ; 99    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------+
+; Inverted Register Statistics                                             ;
++----------------------------------------------------------------+---------+
+; Inverted Register                                              ; Fan out ;
++----------------------------------------------------------------+---------+
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[0]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[1]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[2]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[3]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[4]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[5]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[6]       ; 1       ;
+; outputcontrol:outputcontrol0|LEDscan:LEDscan0|led_row[7]       ; 1       ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_row[0] ; 1       ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_row[1] ; 1       ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_row[6] ; 1       ;
+; outputcontrol:outputcontrol0|numberscan:numberscan0|num_row[7] ; 1       ;
+; game:game0|counttime:counttime0|cnttime[3]                     ; 32      ;
+; game:game0|counttime:counttime0|cnttime[2]                     ; 38      ;
+; game:game0|counttime:counttime0|cnttime[5]                     ; 27      ;
+; game:game0|counttime:counttime0|cnttime[4]                     ; 23      ;
+; Total number of inverted registers = 16                        ;         ;
++----------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |hitegg|game:game0|countpoint:countpoint0|score[3]                      ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |hitegg|game:game0|counttime:counttime0|cnt1[2]                         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |hitegg|game:game0|random:random0|cnt[0]                                ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |hitegg|game:game0|random:random0|cnt5[2]                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |hitegg|game:game0|counttime:counttime0|cnttime[0]                      ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|delaytime[9]      ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|holdtime[7]       ;
+; 92:1               ; 5 bits    ; 305 LEs       ; 280 LEs              ; 25 LEs                 ; Yes        ; |hitegg|outputcontrol:outputcontrol0|numberscan:numberscan0|num_Rcol[0] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |hitegg|game:game0|counttime:counttime0|cnttime[3]                      ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; No         ; |hitegg|outputcontrol:outputcontrol0|LEDscan:LEDscan0|Selector11        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "outputcontrol:outputcontrol0|numberscan:numberscan0"                                                                                            ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                         ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; num_R ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "num_R[31..1]" will be connected to GND. ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "outputcontrol:outputcontrol0|LEDscan:LEDscan0"                                                                                               ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                       ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; key  ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (17 bits) it drives.  Extra input bit(s) "key[16..1]" will be connected to GND. ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "game:game0|random:random0"                                                                                                    ;
++--------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                                                     ;
++--------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; led_ld ; Output ; Warning  ; Output or bidir port (16 bits) is wider than the port expression (1 bits) it drives; bit(s) "led_ld[15..1]" have no fanouts ;
+; led_ld ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                         ;
++--------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "game:game0"                                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; cnt  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "inputcontrol:inputcontrol0"                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; sw3  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Sun Dec 13 09:30:19 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off hitegg -c hitegg
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file keyscan.v
+    Info (12023): Found entity 1: keyscan File: E:/hitegg/keyscan.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file random.v
+    Info (12023): Found entity 1: random File: E:/hitegg/random.v Line: 67
+Info (12021): Found 1 design units, including 1 entities, in source file counttime.v
+    Info (12023): Found entity 1: counttime File: E:/hitegg/counttime.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file countpoint.v
+    Info (12023): Found entity 1: countpoint File: E:/hitegg/countpoint.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ledscan.v
+    Info (12023): Found entity 1: LEDscan File: E:/hitegg/LEDscan.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file numberscan.v
+    Info (12023): Found entity 1: numberscan File: E:/hitegg/numberscan.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file inputcontrol.v
+    Info (12023): Found entity 1: inputcontrol File: E:/hitegg/inputcontrol.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file game.v
+    Info (12023): Found entity 1: game File: E:/hitegg/game.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file outputcontrol.v
+    Info (12023): Found entity 1: outputcontrol File: E:/hitegg/outputcontrol.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file hitegg.v
+    Info (12023): Found entity 1: hitegg File: E:/hitegg/hitegg.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at game.v(19): created implicit net for "led_ld" File: E:/hitegg/game.v Line: 19
+Warning (10236): Verilog HDL Implicit Net warning at outputcontrol.v(17): created implicit net for "key" File: E:/hitegg/outputcontrol.v Line: 17
+Warning (10236): Verilog HDL Implicit Net warning at outputcontrol.v(18): created implicit net for "num_R" File: E:/hitegg/outputcontrol.v Line: 18
+Info (12127): Elaborating entity "hitegg" for the top level hierarchy
+Warning (10034): Output port "led_ld" at hitegg.v(17) has no driver File: E:/hitegg/hitegg.v Line: 17
+Info (12128): Elaborating entity "inputcontrol" for hierarchy "inputcontrol:inputcontrol0" File: E:/hitegg/hitegg.v Line: 28
+Warning (10034): Output port "sw3" at inputcontrol.v(5) has no driver File: E:/hitegg/inputcontrol.v Line: 5
+Info (12128): Elaborating entity "keyscan" for hierarchy "inputcontrol:inputcontrol0|keyscan:keyscan0" File: E:/hitegg/inputcontrol.v Line: 9
+Warning (10240): Verilog HDL Always Construct warning at keyscan.v(18): inferring latch(es) for variable "key", which holds its previous value in one or more paths through the always construct File: E:/hitegg/keyscan.v Line: 18
+Info (10041): Inferred latch for "key[0]" at keyscan.v(18) File: E:/hitegg/keyscan.v Line: 18
+Info (12128): Elaborating entity "game" for hierarchy "game:game0" File: E:/hitegg/hitegg.v Line: 29
+Info (12128): Elaborating entity "random" for hierarchy "game:game0|random:random0" File: E:/hitegg/game.v Line: 19
+Warning (10030): Net "cnt4.data_a" at random.v(74) has no driver or initial value, using a default initial value '0' File: E:/hitegg/random.v Line: 74
+Warning (10030): Net "cnt4.waddr_a" at random.v(74) has no driver or initial value, using a default initial value '0' File: E:/hitegg/random.v Line: 74
+Warning (10030): Net "cnt4.we_a" at random.v(74) has no driver or initial value, using a default initial value '0' File: E:/hitegg/random.v Line: 74
+Warning (10034): Output port "led_ld" at random.v(72) has no driver File: E:/hitegg/random.v Line: 72
+Info (12128): Elaborating entity "countpoint" for hierarchy "game:game0|countpoint:countpoint0" File: E:/hitegg/game.v Line: 20
+Info (12128): Elaborating entity "counttime" for hierarchy "game:game0|counttime:counttime0" File: E:/hitegg/game.v Line: 21
+Warning (10230): Verilog HDL assignment warning at counttime.v(40): truncated value with size 32 to match size of target (10) File: E:/hitegg/counttime.v Line: 40
+Warning (10230): Verilog HDL assignment warning at counttime.v(54): truncated value with size 32 to match size of target (6) File: E:/hitegg/counttime.v Line: 54
+Info (12128): Elaborating entity "outputcontrol" for hierarchy "outputcontrol:outputcontrol0" File: E:/hitegg/hitegg.v Line: 30
+Info (12128): Elaborating entity "LEDscan" for hierarchy "outputcontrol:outputcontrol0|LEDscan:LEDscan0" File: E:/hitegg/outputcontrol.v Line: 17
+Warning (10230): Verilog HDL assignment warning at LEDscan.v(208): truncated value with size 32 to match size of target (4) File: E:/hitegg/LEDscan.v Line: 208
+Info (10264): Verilog HDL Case Statement information at LEDscan.v(135): all case item expressions in this case statement are onehot File: E:/hitegg/LEDscan.v Line: 135
+Warning (10230): Verilog HDL assignment warning at LEDscan.v(260): truncated value with size 32 to match size of target (10) File: E:/hitegg/LEDscan.v Line: 260
+Info (12128): Elaborating entity "numberscan" for hierarchy "outputcontrol:outputcontrol0|numberscan:numberscan0" File: E:/hitegg/outputcontrol.v Line: 18
+Critical Warning (127005): Memory depth (4) in the design file differs from memory depth (3) in the Memory Initialization File "E:/hitegg/db/hitegg.ram0_random_ed4ec6f4.hdl.mif" -- setting initial value for remaining addresses to 0
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "num_Rcol[7]" is stuck at GND File: E:/hitegg/hitegg.v Line: 16
+    Warning (13410): Pin "num_row[2]" is stuck at VCC File: E:/hitegg/hitegg.v Line: 15
+    Warning (13410): Pin "num_row[3]" is stuck at VCC File: E:/hitegg/hitegg.v Line: 15
+    Warning (13410): Pin "num_row[4]" is stuck at VCC File: E:/hitegg/hitegg.v Line: 15
+    Warning (13410): Pin "num_row[5]" is stuck at VCC File: E:/hitegg/hitegg.v Line: 15
+    Warning (13410): Pin "led_ld[0]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[1]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[2]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[3]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[4]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[5]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[6]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[7]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[8]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[9]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[10]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[11]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[12]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[13]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[14]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+    Warning (13410): Pin "led_ld[15]" is stuck at GND File: E:/hitegg/hitegg.v Line: 17
+Info (18000): Registers with preset signals will power-up high File: E:/hitegg/LEDscan.v Line: 59
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "sw3" File: E:/hitegg/hitegg.v Line: 4
+    Warning (15610): No output dependent on input pin "sure" File: E:/hitegg/hitegg.v Line: 8
+Info (21057): Implemented 463 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 8 input pins
+    Info (21059): Implemented 60 output pins
+    Info (21061): Implemented 395 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 42 warnings
+    Info: Peak virtual memory: 4713 megabytes
+    Info: Processing ended: Sun Dec 13 09:30:30 2020
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:24
+
+

@@ -1,0 +1,13 @@
+module game(clk,rst,key,btn,position);
+	input clk;
+	input rst;
+	input [15:0]key;
+	input btn;
+	input sw3;
+	wire [16:0] position;
+	wire [5:0] cnttime;
+	wire [4:0] score;
+	random random0(clk,rst,position,sure);
+	countpoint countpoint0(clk,rst,key,position,score,over);
+	counttime counttime0(clk,rst,cnttime,btn);
+endmodule

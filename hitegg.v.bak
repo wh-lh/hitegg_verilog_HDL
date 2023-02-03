@@ -1,0 +1,18 @@
+module hitegg(clk,rst,sw3,btn,key,key_row,key_col,sure, led_Rcol,led_Gcol,led_row,led_R,led_G,led_Y,num_Rcol,num_row);
+	input clk;
+	input rst;
+	input sw3;
+	input btn;
+	input [3:0]key_row;
+	output [3:0] key_col;
+	input sure;
+	output [7:0]led_Rcol;
+	output [7:0]led_Gcol;
+	output [7:0]led_row;'
+	output   [63:0] led_R;
+	output   [63:0] led_G;
+	output   [63:0] led_Y;
+	output   [7:0] num_row;
+	output   [7:0] num_Rcol;
+	wire [16:0] key;
+	

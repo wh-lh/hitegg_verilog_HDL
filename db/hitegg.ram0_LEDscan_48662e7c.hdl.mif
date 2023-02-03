@@ -1,0 +1,19 @@
+-- begin_signature
+-- LEDscan
+-- end_signature
+WIDTH=2;
+DEPTH=8;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=BIN;
+
+CONTENT BEGIN
+	7 :	11;
+	6 :	10;
+	5 :	11;
+	4 :	10;
+	3 :	01;
+	2 :	01;
+	1 :	11;
+	0 :	01;
+END;

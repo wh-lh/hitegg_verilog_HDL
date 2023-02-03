@@ -1,0 +1,343 @@
+//module debounce (clk,rst,key,key_pulse);
+// 
+//        parameter       N  =  1;                      //要消除的按键的数量
+// 
+//	input             clk;
+//        input             rst;
+//        input 	[N-1:0]   key;                        //输入的按键					
+//	output  [N-1:0]   key_pulse;                  //按键动作产生的脉冲	
+// 
+//        reg     [N-1:0]   key_rst_pre;                //定义一个寄存器型变量存储上一个触发时的按键值
+//        reg     [N-1:0]   key_rst;                    //定义一个寄存器变量储存储当前时刻触发的按键值
+// 
+//        wire    [N-1:0]   key_edge;                   //检测到按键由高到低变化是产生一个高脉冲
+// 
+//        //利用非阻塞赋值特点，将两个时钟触发时按键状态存储在两个寄存器变量中
+//        always @(posedge clk  or  negedge rst)
+//          begin
+//             if (!rst) begin
+//                 key_rst <= {N{1'b1}};                //初始化时给key_rst赋值全为1，{}中表示N个1
+//                 key_rst_pre <= {N{1'b1}};
+//             end
+//             else begin
+//                 key_rst <= key;                     //第一个时钟上升沿触发之后key的值赋给key_rst,同时key_rst的值赋给key_rst_pre
+//                 key_rst_pre <= key_rst;             //非阻塞赋值。相当于经过两个时钟触发，key_rst存储的是当前时刻key的值，key_rst_pre存储的是前一个时钟的key的值
+//             end    
+//           end
+// 
+//        assign  key_edge = key_rst_pre & (~key_rst);//脉冲边沿检测。当key检测到下降沿时，key_edge产生一个时钟周期的高电平
+// 
+//        reg	[17:0]	  cnt;                       //产生延时所用的计数器，系统时钟12MHz，要延时20ms左右时间，至少需要18位计数器     
+// 
+//        //产生20ms延时，当检测到key_edge有效是计数器清零开始计数
+//        always @(posedge clk or negedge rst)
+//           begin
+//             if(!rst)
+//                cnt <= 18'h0;
+//             else if(key_edge)
+//                cnt <= 18'h0;
+//             else
+//                cnt <= cnt + 1'h1;
+//             end  
+// 
+//        reg     [N-1:0]   key_sec_pre;                //延时后检测电平寄存器变量
+//        reg     [N-1:0]   key_sec;                    
+// 
+// 
+//        //延时后检测key，如果按键状态变低产生一个时钟的高脉冲。如果按键状态是高的话说明按键无效
+//        always @(posedge clk  or  negedge rst)
+//          begin
+//             if (!rst) 
+//                 key_sec <= {N{1'b1}};                
+//             else if (cnt==18'd20)
+//                 key_sec <= key;  
+//          end
+//       always @(posedge clk  or  negedge rst)
+//          begin
+//             if (!rst)
+//                 key_sec_pre <= {N{1'b1}};
+//             else                   
+//                 key_sec_pre <= key_sec;             
+//         end      
+//       assign  key_pulse = key_sec_pre & (~key_sec);     
+// 
+//endmodule
+
+
+module random(clk,rst,position,sure,cnt,led_ld,color,remake);
+	input clk;
+	input rst;
+	input sure;
+	input remake;
+	output [15:0] led_ld;
+	output reg [16:0] position;
+	reg [1:0]cnt4[2:0];
+	reg [2:0]cnt5;
+	output reg [1:0] color;
+   //reg [3:0] en;
+	output reg [3:0]cnt;
+	reg [9:0]delay;
+	//wire cfm_dbs;
+	initial begin
+		cnt<=4'd0;
+		cnt4[0]<=2'b01;
+		cnt4[1]<=2'b11;
+		cnt4[2]<=2'b10;
+	end
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin
+		end
+		else if(cnt5<2'd3)begin
+			cnt5<=cnt5+1'b1;
+		end
+		else if(cnt5==2'd3)begin
+			cnt5<=3'd0;
+		end
+	end
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin
+		end
+		else if(remake)begin
+		  color<=cnt4[cnt5];
+		end
+
+	end
+//	always@(posedge clk or posedge rst)
+//	begin
+//		if(rst) begin
+//			delay<=10'b0;
+//		end
+//		else if(delay<1000) begin
+//			delay<=delay+1;
+//		end
+//		else if(delay==1000) begin
+//			delay<=10'b0;
+//		end       
+//	end
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin
+			cnt<=4'd0;
+		end
+		
+		else if( cnt==4'd15 && !remake )begin
+			cnt<=4'd0;
+		end
+		else if( cnt<4'd15 && !remake ) begin
+			cnt<=cnt+1'b1;
+		end
+		else if(remake) begin
+			case (cnt) 
+		4'b0000:begin
+					position<=17'b0_0000_0000_0000_0010;
+					//color<=2'b10;
+					
+				  end
+		4'b0001:begin
+					position<=17'b0_0000_0000_0000_0100;
+					//color<=2'b01;
+				  end
+		4'b0010:begin
+					position<=17'b0_0000_0000_0000_1000;
+					//color<=2'b11;
+				  end
+		4'b0011:begin
+					position<=17'b0_0000_0000_0001_0000;
+					//color<=2'b10;
+				  end
+		4'b0100:begin
+					position<=17'b0_0000_0000_0010_0000;
+					//color<=2'b01;
+				  end
+		4'b0101:begin
+					position<=17'b0_0000_0000_0100_0000;
+					//color<=2'b11;
+				  end
+		4'b0110:begin
+					position<=17'b0_0000_0000_1000_0000;
+					//color<=2'b10;
+				  end
+		4'b0111:begin
+					position<=17'b0_0000_0001_0000_0000;
+					//color<=2'b01;
+				  end
+		4'b1000:begin
+					position<=17'b0_0000_0010_0000_0000;
+//					color<=2'b11;
+				  end
+		4'b1001:begin
+					position<=17'b0_0000_0100_0000_0000;
+					//color<=2'b10;
+				  end
+		4'b1010:begin
+					position<=17'b0_0000_1000_0000_0000;
+					//color<=2'b01;
+					
+				  end
+		4'b1011:begin
+					position<=17'b0_0001_0000_0000_0000;
+					//color<=2'b11;
+				  end
+		4'b1100:begin
+					position<=17'b0_0010_0000_0000_0000;
+					//color<=2'b10;
+				  end
+		4'b1101:begin
+					position<=17'b0_0100_0000_0000_0000;
+					//color<=2'b01;
+				  end
+		4'b1110:begin
+					position<=17'b0_1000_0000_0000_0000;
+					//color<=2'b11;
+				  end
+		4'b1111:begin
+					position<=17'b1_0000_0000_0000_0000;
+					//color<=2'b10;
+				  end
+		default:begin
+					position<=17'b1_1010_1010_1010_1010;
+					end
+					
+		endcase
+//			case(cnt)
+//			4'b0000:begin
+//					//position<=17'b0_0000_0000_0000_0010;
+//					color<=2'b10;
+//					
+//				  end
+//		4'b0001:begin
+//					//position<=17'b0_0000_0000_0000_0100;
+//					color<=2'b01;
+//				  end
+//		4'b0010:begin
+//					//position<=17'b0_0000_0000_0000_1000;
+//					color<=2'b11;
+//				  end
+//		4'b0011:begin
+//					//position<=17'b0_0000_0000_0001_0000;
+//					color<=2'b10;
+//				  end
+//		4'b0100:begin
+//					//position<=17'b0_0000_0000_0010_0000;
+//					color<=2'b01;
+//				  end
+//		4'b0101:begin
+//					//position<=17'b0_0000_0000_0100_0000;
+//					color<=2'b11;
+//				  end
+//		4'b0110:begin
+//					//position<=17'b0_0000_0000_1000_0000;
+//					color<=2'b10;
+//				  end
+//		4'b0111:begin
+//					//position<=17'b0_0000_0001_0000_0000;
+//					color<=2'b01;
+//				  end
+//		4'b1000:begin
+//					//position<=17'b0_0000_0010_0000_0000;
+//					color<=2'b11;
+//				  end
+//		4'b1001:begin
+//					//position<=17'b0_0000_0100_0000_0000;
+//					color<=2'b10;
+//				  end
+//		4'b1010:begin
+//					//position<=17'b0_0000_1000_0000_0000;
+//					color<=2'b01;
+//					
+//				  end
+//		4'b1011:begin
+//					//position<=17'b0_0001_0000_0000_0000;
+//					color<=2'b11;
+//				  end
+//		4'b1100:begin
+//					//position<=17'b0_0010_0000_0000_0000;
+//					color<=2'b10;
+//				  end
+//		4'b1101:begin
+//					//position<=17'b0_0100_0000_0000_0000;
+//					color<=2'b01;
+//				  end
+//		4'b1110:begin
+//					//position<=17'b0_1000_0000_0000_0000;
+//					color<=2'b11;
+//				  end
+//		4'b1111:begin
+//					//position<=17'b1_0000_0000_0000_0000;
+//					color<=2'b10;
+//				  end
+//		default:begin
+//					//position<=17'b1_1010_1010_1010_1010;
+//					color<=2'b11;
+//					end
+//					
+//		endcase
+		
+		end
+	end
+	//assign led_ld[1:0]=color[1:0];
+	//assign led_ld[15:0]=position[16:1];
+	//assign led_ld[15:6]=delay[9:0];
+//	always @(posedge clk or posedge rst) begin
+//		case (en) 
+//		4'b0000:begin
+//					position<=17'b0_0000_0000_0000_0010;
+//				  end
+//		4'b0001:begin
+//					position<=17'b0_0000_0000_0000_0100;
+//				  end
+//		4'b0010:begin
+//					position<=17'b0_0000_0000_0000_1000;
+//				  end
+//		4'b0011:begin
+//					position<=17'b0_0000_0000_0001_0000;
+//				  end
+//		4'b0100:begin
+//					position<=17'b0_0000_0000_0010_0000;
+//				  end
+//		4'b0101:begin
+//					position<=17'b0_0000_0000_0100_0000;
+//				  end
+//		4'b0110:begin
+//					position<=17'b0_0000_0000_1000_0000;
+//				  end
+//		4'b0111:begin
+//					position<=17'b0_0000_0001_0000_0000;
+//				  end
+//		4'b1000:begin
+//					position<=17'b0_0000_0010_0000_0000;
+//				  end
+//		4'b1001:begin
+//					position<=17'b0_0000_0100_0000_0000;
+//				  end
+//		4'b1010:begin
+//					position<=17'b0_0000_1000_0000_0000;
+//					
+//				  end
+//		4'b1011:begin
+//					position<=17'b0_0001_0000_0000_0010;
+//				  end
+//		4'b1100:begin
+//					position<=17'b0_0010_0000_0000_0010;
+//				  end
+//		4'b1101:begin
+//					position<=17'b0_0100_0000_0000_0010;
+//				  end
+//		4'b1110:begin
+//					position<=17'b0_1000_0000_0000_0010;
+//				  end
+//		4'b1111:begin
+//					position<=17'b1_0000_0000_0000_0010;
+//				  end
+//		endcase
+//	end
+	
+	//assign led_ld[3:0]=en;
+//	assign led_ld[15:12]=cnt;
+//	assign led_ld[5]=sure;
+//	assign led_ld[6]=cfm_dbs;
+//	debounce key_cfm_dbs (//调用消抖模块,用以消抖确认键.
+//		.clk (clk),
+//		.rst (~rst),
+//		.key (~sure),
+//		.key_pulse (cfm_dbs));
+endmodule

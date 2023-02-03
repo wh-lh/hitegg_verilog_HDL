@@ -1,0 +1,9 @@
+module outputcontrol(clk,rst,position,cnttime,score,num_row,num_R);
+	input clk;
+	input rst;
+	input [15:0]position;
+	input [5:0]cnttime;
+	input [4:0]score;
+	//input [15:0]key;
+	LEDscan(clk,rst,led_Rcol,led_Gcol,led_row,led_R,led_G,led_Y,position);
+	numberscan(clk,rst,num_Rcol,num_row,num_R,cnttime,score);

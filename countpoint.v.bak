@@ -1,0 +1,23 @@
+module countpoint(clk,rst,key,position,score);
+	input clk;
+	input rst;
+	input [16:0] key;
+	input [16:0] position;
+	output reg [4:0] score;
+	always@(posedge clk or posedge rst)
+	begin
+		if(rst) begin
+			score<=5'b0;
+		end
+		else if(key==position && score<5'd19 && !over)begin
+			score<=score+1'b1;
+		end
+		else if(score==5'd19 && !over) begin
+			score<=5'd19;
+		end
+		else if(over) begin
+			score<=score;
+		end
+		
+	
+	end
